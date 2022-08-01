@@ -80,37 +80,40 @@ var sumTotal = function(products) {
 };
 
 // return an object consisting of dessert types and how many of each.
-// exampleOutput: { dessertType: 3, dessertType2: 1 }
-
-// I - Desserts array of objects
-// O - Object with type counts
-// C - No for loops
-// E -
-
 var dessertCategories = function(desserts) {
-  // pseudocode
-  // create an object
-  // for each dessert type in array/obj, create a key in the result object
-  // for each dessert in the object array
-  // get type of dessert
-  // if the key doesn't already exist, add it to result obj
-  // increment the corresponding key in the result obj
-  // return object with dessert type counts and how many of each
-};
+  var count = 0;
 
+  return _.reduce(desserts, function(memo, dessert, index) {
+    if (!memo[dessert.type]) {
+      memo[dessert.type] = count;
+    }
+    memo[dessert.type]++;
+    return memo;
+  }, {});
+};
 
 // given an array of movie data objects,return an array containing
 // movies that came out between 1990 and 2000.
-// TIP: use an array as your accumulator - don't push to an external array!
 var ninetiesKid = function(movies) {
-
+  return _.reduce(movies, function(memo, movie, index) {
+    if (movie.releaseYear > 1989 && movie.releaseYear < 2001) {
+      memo.push(movie.title);
+    }
+    return memo
+  }, []);
 };
 
-// return an boolean stating if there exists a movie with a shorter
+// return a boolean stating if there exists a movie with a shorter
 // runtime than your time limit.
 // timeLimit is an integer representing a number of minutes.
 var movieNight = function(movies, timeLimit) {
+  // console.log(arguments);
+  // console.log(movies);
 
+  return _.reduce(movies, function(memo, movie, index) {
+    if (movie.runtime < timeLimit) { memo = true; }
+    return memo;
+  }, false);
 };
 
 /*
@@ -129,7 +132,6 @@ var upperCaseFruits = function(fruits) {
 
 // given an array of dessert objects, return a new array of objects
 // that have a new "glutenFree" property, with a boolean value.
-// TIP: Items that contain flour are not gluten-free.
 var glutenFree = function(desserts) {
   _.map(desserts, function(dessert) {
     dessert.glutenFree = dessert.ingredients.includes('flour') ? false : true;
