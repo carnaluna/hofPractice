@@ -1,7 +1,3 @@
-// This repo is optional extra practice to use the underscore functions.
-// Here we'll be writing new functions, but these functions will use
-// the underscore functions within them.
-
 /*
  *
  *  _.each
@@ -70,11 +66,11 @@ var cookiesOnly = function(desserts) {
 var sumTotal = function(products) {
   return _.reduce(products, function(memo, item, index) {
     var accumulator = 0;
-    var itemPrice = parseFloat(item.price.slice(1,));
+    var itemPrice = parseFloat(item.price.slice(1));
 
     _.each(products, function (product, index) {
-      accumulator += parseFloat(product.price.slice(1,));
-    })
+      accumulator += parseFloat(product.price.slice(1));
+    });
     return accumulator;
   });
 };
@@ -99,7 +95,7 @@ var ninetiesKid = function(movies) {
     if (movie.releaseYear > 1989 && movie.releaseYear < 2001) {
       memo.push(movie.title);
     }
-    return memo
+    return memo;
   }, []);
 };
 
@@ -107,9 +103,6 @@ var ninetiesKid = function(movies) {
 // runtime than your time limit.
 // timeLimit is an integer representing a number of minutes.
 var movieNight = function(movies, timeLimit) {
-  // console.log(arguments);
-  // console.log(movies);
-
   return _.reduce(movies, function(memo, movie, index) {
     if (movie.runtime < timeLimit) { memo = true; }
     return memo;
@@ -127,7 +120,7 @@ var movieNight = function(movies, timeLimit) {
 var upperCaseFruits = function(fruits) {
   _.map(fruits, function(fruit) {
     return fruit[0].toUpperCase();
-  })
+  });
 };
 
 // given an array of dessert objects, return a new array of objects
@@ -135,7 +128,7 @@ var upperCaseFruits = function(fruits) {
 var glutenFree = function(desserts) {
   _.map(desserts, function(dessert) {
     dessert.glutenFree = dessert.ingredients.includes('flour') ? false : true;
-  })
+  });
   return desserts;
 };
 
@@ -145,9 +138,9 @@ var applyCoupon = function(groceries, coupon) {
   var percentage = coupon * 100;
 
   _.map(groceries, function(item) {
-    var integerPrice = parseFloat(item.price.slice(1,)) * 100;
+    var integerPrice = parseFloat(item.price.slice(1)) * 100;
     var afterCoupon = (integerPrice - (integerPrice * coupon)) / 100;
-    var finalPrice = Math.round(afterCoupon * 100)/100;
+    var finalPrice = (Math.round(afterCoupon * 100) / 100);
     item.salePrice = '$' + finalPrice;
   });
   return groceries;
