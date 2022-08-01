@@ -1,6 +1,6 @@
 // This repo is optional extra practice to use the underscore functions.
-// Here we'll be writing new functions, but these functions will use 
-// the underscore functions within them. 
+// Here we'll be writing new functions, but these functions will use
+// the underscore functions within them.
 
 /*
  *
@@ -22,7 +22,14 @@ var moreFruits = function(fruits) {
 // use _.each to traverse the number array and determine
 // which are multiples of five.
 var multiplesOfFive = function(numbers) {
+  var count = 0;
 
+  _.each(numbers, function(num, index) {
+    if (num % 5 === 0) {
+      count++;
+    }
+  });
+  return count;
 };
 
 /*
@@ -33,18 +40,24 @@ var multiplesOfFive = function(numbers) {
 
 // use _.filter to return the fruits array with only the desired fruit.
 var onlyOneFruit = function(fruits, targetFruit) {
-
+  return _.filter(fruits, function(fruit) {
+    return fruit === targetFruit;
+  });
 };
 
 // use _.filter to return the fruits array with only fruits
 // starting with the letter 'P'.
 var startsWith = function(fruits, letter) {
-
+  return _.filter(fruits, function(fruit) {
+    return fruit[0] === letter;
+  });
 };
 
 // return a filtered array containing only cookie-type desserts.
 var cookiesOnly = function(desserts) {
-
+  return _.filter(desserts, function(dessert) {
+    return dessert.type === 'cookie';
+  });
 };
 
 /*
@@ -55,20 +68,42 @@ var cookiesOnly = function(desserts) {
 
 // return the total price of all products.
 var sumTotal = function(products) {
-  
+  return _.reduce(products, function(memo, item, index) {
+    var accumulator = 0;
+    var itemPrice = parseFloat(item.price.slice(1,));
+
+    _.each(products, function (product, index) {
+      accumulator += parseFloat(product.price.slice(1,));
+    })
+    return accumulator;
+  });
 };
 
 // return an object consisting of dessert types and how many of each.
 // exampleOutput: { dessertType: 3, dessertType2: 1 }
-var dessertCategories = function(desserts) {
 
+// I - Desserts array of objects
+// O - Object with type counts
+// C - No for loops
+// E -
+
+var dessertCategories = function(desserts) {
+  // pseudocode
+  // create an object
+  // for each dessert type in array/obj, create a key in the result object
+  // for each dessert in the object array
+  // get type of dessert
+  // if the key doesn't already exist, add it to result obj
+  // increment the corresponding key in the result obj
+  // return object with dessert type counts and how many of each
 };
+
 
 // given an array of movie data objects,return an array containing
 // movies that came out between 1990 and 2000.
 // TIP: use an array as your accumulator - don't push to an external array!
 var ninetiesKid = function(movies) {
-  
+
 };
 
 // return an boolean stating if there exists a movie with a shorter
@@ -102,7 +137,7 @@ var glutenFree = function(desserts) {
 //
 // having trouble with decimals? check out this article:
 // http://adripofjavascript.com/blog/drips/avoiding-problems-with-decimal-math-in-javascript.html
-// 
+//
 /*
 
  example output:
@@ -111,7 +146,7 @@ var glutenFree = function(desserts) {
     {
       id: 1,
       product: 'Olive Oil',
-      price: '$12.1', 
+      price: '$12.1',
       salePrice: '$9.68'
     }
   ];
