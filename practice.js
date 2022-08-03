@@ -123,7 +123,7 @@ var upperCaseFruits = function(fruits) {
   });
 };
 
-// given an array of dessert objects, return a new array of objects
+// given an array of dessert objects, return a new array of objects.
 // that have a new "glutenFree" property, with a boolean value.
 var glutenFree = function(desserts) {
   _.map(desserts, function(dessert) {
